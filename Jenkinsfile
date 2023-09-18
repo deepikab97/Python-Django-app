@@ -1,5 +1,5 @@
 pipeline {
-  agent Agent_linux_deepika
+  agent { 'Agent_linux_deepika' }
   environment {
     // Define environment variables, e.g., for database connection
     DB_PORT = '5432'
@@ -14,7 +14,7 @@ pipeline {
       steps {
         // Check out your source code from a version control system like Git.
         git branch: "master", "develop"
-        url: 'https://github.com/deepikab97/Python-Django-app.git'
+            url: 'https://github.com/deepikab97/Python-Django-app.git'
       }
     }
 
