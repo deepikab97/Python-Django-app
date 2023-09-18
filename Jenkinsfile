@@ -16,7 +16,6 @@ pipeline {
             steps {
                 // Check out your source code from a version control system like Git.
                 git branch: "master", "develop"
-                credentialsId: 'deepikab97',
                 url: 'https://github.com/deepikab97/Python-Django-app.git'
                 
             }
