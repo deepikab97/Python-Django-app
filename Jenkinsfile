@@ -1,5 +1,7 @@
 pipeline {
-  node ('Agent_linux_deepika')
+    agent {
+        label 'Agent_linux_deepika'
+    }
   environment {
     // Define environment variables, e.g., for database connection
     DB_PORT = '5432'
