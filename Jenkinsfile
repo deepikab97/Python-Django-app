@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent 'Agent_linux_deepika'
 
     environment {
         // Define environment variables, e.g., for database connection
