@@ -38,25 +38,9 @@ pipeline {
           sh 'python3 manage.py test'
         }
       }
-      stage('Build and Package') {
-        steps {
-          // Build your Python application (e.g., create a distribution package).
-          sh 'python setup.py sdist bdist_wheel'
-        }
-      }
-      stage('Publish Artifacts') {
-        steps {
-          // Publish your Python package (e.g., to a package repository).
-          // Replace the following line with your actual publish command.
-          sh 'twine upload dist/*
-        }
-      }
-      stage('Cleanup') {
-        steps {
-          // Clean up any temporary files or resources.
-          sh 'deactivate' // Deactivate the virtual environment
-        }
-      }
+      
+      
+      
     }
 
    }
