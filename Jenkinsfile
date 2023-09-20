@@ -16,7 +16,7 @@ pipeline {
         steps {
           // Use a virtual environment to isolate Python dependencies
           sh 'python3 -m venv venv'
-          sh 'source venv/bin/activate'
+          sh '. venv/bin/activate'
           sh 'pip install -r requirements.txt'
       }
     }
