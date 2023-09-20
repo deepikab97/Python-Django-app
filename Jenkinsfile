@@ -20,13 +20,14 @@ pipeline {
           sh 'pip install -r requirements.txt'
       }
     }
-     stage('Database Setup') {
+      stage('Database Setup') {
         steps {
           // Initialize the PostgreSQL database (create schema, run migrations, etc.)
           sh 'python3 manage.py makemigrations'
           sh 'python3 manage.py migrate'
+        }
       }
-    stage('Run Tests') {
+      stage('Run Tests') {
         steps {
          // Run your Python tests.  
           sh 'python3 manage.py test'
