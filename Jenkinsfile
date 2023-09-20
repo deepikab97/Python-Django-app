@@ -12,14 +12,6 @@ pipeline {
 
     stages {
 
-      stage('Checkout') {
-        steps {
-          // Check out your source code from a version control system like Git.
-            git branch: "master", "develop"
-                url: 'https://github.com/deepikab97/Python-Django-app.git'
-      }
-    }
-
       stage('Install Dependencies') {
         steps {
           // Use a virtual environment to isolate Python dependencies
