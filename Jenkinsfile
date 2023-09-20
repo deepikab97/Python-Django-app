@@ -17,7 +17,7 @@ pipeline {
           // Use a virtual environment to isolate Python dependencies
           sh 'python3 -m venv venv'
           sh '. venv/bin/activate'
-          sh 'pip install -r requirements.txt'
+          sh 'pip3 install -r requirements.txt'
       }
     }
       stage('Database Setup') {
@@ -33,7 +33,8 @@ pipeline {
           sh 'python3 manage.py test'
         }
       }
-      
+
+        
       
       
     }
