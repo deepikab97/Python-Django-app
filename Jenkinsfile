@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'Agent_linux_deepika'
+        label 'Agent_linux_akshay'
     }
     environment {
     // Define environment variables, e.g., for database connection
@@ -15,22 +15,22 @@ pipeline {
       stage('Install Dependencies') {
         steps {
           // Use a virtual environment to isolate Python dependencies
-          sh 'python3 -m venv venv'
+          sh 'python -m venv venv'
           sh '. venv/bin/activate'
-          sh 'pip3 install -r requirements.txt'
+          sh 'pip install -r requirements.txt'
       }
     }
       stage('Database Setup') {
         steps {
           // Initialize the PostgreSQL database (create schema, run migrations, etc.)
-          sh 'python3 manage.py makemigrations'
-          sh 'python3 manage.py migrate'
+          sh 'python manage.py makemigrations'
+          sh 'python manage.py migrate'
         }
       }
       stage('Run Tests') {
         steps {
          // Run your Python tests.  
-          sh 'python3 manage.py test'
+          sh 'python manage.py test'
         }
       }
 
