@@ -15,22 +15,22 @@ pipeline {
       stage('Install Dependencies') {
         steps {
           // Use a virtual environment to isolate Python dependencies
-          //sh 'python -m venv venv'
-          //sh '. venv/bin/activate'
-          sh 'pip install -r requirements.txt'
+          sh 'python3 -m venv venv'
+          sh '. venv/bin/activate'
+          sh 'pip3 install -r requirements.txt'
       }
     }
       stage('Database Setup') {
         steps {
           // Initialize the PostgreSQL database (create schema, run migrations, etc.)
-          sh 'python manage.py makemigrations'
-          sh 'python manage.py migrate'
+          sh 'python3 manage.py makemigrations'
+          sh 'python3 manage.py migrate'
         }
       }
       stage('Run Tests') {
         steps {
          // Run your Python tests.  
-          sh 'python manage.py test'
+          sh 'python3 manage.py test'
         }
       }
 
