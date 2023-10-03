@@ -36,9 +36,9 @@ pipeline {
         }
       }
      
-     stage('Sonarqube') {
+     stage('Sonarqube Analysis') {
          steps {
-             withSonarQubeEnv(credentialsId: 'deepikaSonarcloudToken', installationName: 'SonarCloud ') {
+             withSonarQubeEnv(credentialsId: 'Sonarqube Token Deepika', installationName: 'SonarCloud ') {
             // some block
                 sh 'sonar-scanner'
             }
