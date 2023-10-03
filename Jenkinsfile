@@ -40,6 +40,7 @@ pipeline {
          steps {
              withSonarQubeEnv(credentialsId: 'Sonarqube Token Deepika', installationName: 'SonarCloud ') {
             // some block
+                 println ${env.SONAR_HOST_URL} 
                 sh 'sonar-scanner'
             }
              timeout(time: 10, unit: 'MINUTES') {
