@@ -37,11 +37,11 @@ pipeline {
       }
      
      stage('Sonarqube Analysis') {
+          def scannerHome = tool name: 'sonarscanner';
          steps {
              withSonarQubeEnv(credentialsId: 'Sonarqube Token Deepika', installationName: 'SonarCloud ') {
-            // some block
-                 println '${env.SONAR_HOST_URL}' 
-                sh 'sonar-scanner'
+            // some block 
+                sh '/home/akshay/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner'
             }
              timeout(time: 10, unit: 'MINUTES') {
                  waitForQualityGate abortPipeline: true
