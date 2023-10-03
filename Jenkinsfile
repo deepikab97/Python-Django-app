@@ -8,6 +8,8 @@ pipeline {
       DB_NAME = 'postgres'
       DB_USER = 'postgres'
       DB_PASS = 'postgres'
+      scannerHome = tool 'SonarQube Scanner'
+        
    }
 
     stages {
@@ -33,8 +35,22 @@ pipeline {
           sh 'python3 manage.py test'
         }
       }
+     
+     stage('Sonarqube') {
+         steps {
+             withSonarQubeEnv(installationName: 'SonarQube Scanner',credentialsId:'deepikaSonarcloudToken') {
+                               
+                 sh 'sonar-scanner'
+                               
+                  echo 'inside sonar'
+                 }
+             timeout(time: 10, unit: 'MINUTES') {
+                 waitForQualityGate abortPipeline: true
+                 echo 'inside sonar environment'
+                      }
+                }
+           }   
 
-        
       
       
     }
