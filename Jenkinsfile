@@ -8,7 +8,7 @@ pipeline {
       DB_NAME = 'postgres'
       DB_USER = 'postgres'
       DB_PASS = 'postgres'
-      
+      scannerHome = tool 'sonarscanner'
         
    }
 
