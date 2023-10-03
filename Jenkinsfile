@@ -27,7 +27,7 @@ pipeline {
           sh 'python3 manage.py migrate'
         }
       }
-      stage('Run Tests') {
+      stage('Unit Testing') {
         steps {
          // Run your Python tests.  
           sh 'python3 manage.py test'
