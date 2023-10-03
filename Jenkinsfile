@@ -8,7 +8,7 @@ pipeline {
       DB_NAME = 'postgres'
       DB_USER = 'postgres'
       DB_PASS = 'postgres'
-      scannerHome = tool '(SonarQube Scanner)sonar_scanner'
+      
         
    }
 
@@ -38,12 +38,10 @@ pipeline {
      
      stage('Sonarqube') {
          steps {
-             withSonarQubeEnv(installationName: 'SonarQube Scanner',credentialsId:'deepikaSonarcloudToken') {
-                               
-                 sh 'sonar-scanner'
-                               
-                  echo 'inside sonar'
-                 }
+             withSonarQubeEnv(credentialsId: 'deepikaSonarcloudToken', installationName: 'SonarCloud ') {
+            // some block
+                sh 'sonar-scanner'
+            }
              timeout(time: 10, unit: 'MINUTES') {
                  waitForQualityGate abortPipeline: true
                  echo 'inside sonar environment'
