@@ -37,7 +37,7 @@ pipeline {
       }
      
      stage('Sonarqube Analysis') {
-          def scannerHome = tool name: 'sonarscanner';
+         // def scannerHome = tool name: 'sonarscanner';
          steps {
              withSonarQubeEnv(credentialsId: 'Sonarqube Token Deepika', installationName: 'SonarCloud ') {
             // some block 
