@@ -38,8 +38,10 @@ pipeline {
 
      stage('Code Coverage') {
         steps {
+            script {
             def currentDirectory = pwd()
             echo "Current working directory is: ${currentDirectory}"
+            }
          // Generate code coverage.  
           sh 'pip install coverage'
           sh 'coverage run manage.py test'       // Run tests with coverage 
