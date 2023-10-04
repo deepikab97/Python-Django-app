@@ -43,6 +43,8 @@ pipeline {
             echo "Current working directory is: ${currentDirectory}"
             }
          // Generate code coverage.  
+          sh 'python3 -m venv venv'
+          sh '. venv/bin/activate'  
           sh 'pip install coverage'
           sh 'coverage run manage.py test'       // Run tests with coverage 
           sh 'coverage xml -i -o ${currentDirectory}/coverage.xml'   // Generate the coverage report  
