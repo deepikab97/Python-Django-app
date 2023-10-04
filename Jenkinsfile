@@ -45,11 +45,11 @@ pipeline {
          // Generate code coverage.  
           sh 'python3 -m venv venv'
           sh '. venv/bin/activate' 
-          //sh 'pip3 install -r requirements.txt' 
-          sh 'pip3 install django'  
+          sh 'pip3 install -r requirements.txt' 
+          //sh 'pip3 install django'  
           sh 'python3 manage.py makemigrations'
           sh 'python3 manage.py migrate'  
-
+          sh 'python3 manage.py runserver'
            
          
           sh 'pip3 install coverage'
