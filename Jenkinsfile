@@ -49,7 +49,7 @@ pipeline {
           //sh 'pip3 install django'  
           sh 'python3 manage.py makemigrations'
           sh 'python3 manage.py migrate'  
-          sh 'python3 manage.py runserver'
+         // sh 'python3 manage.py runserver'
            
          
           sh 'pip3 install coverage'
