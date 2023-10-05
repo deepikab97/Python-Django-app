@@ -14,13 +14,13 @@ pipeline {
 
     stages {
 
-        stage('Checkout'){
-            steps{
+        // stage('Checkout'){
+        //     steps{
                 
-                script { git branch: 'master',   url: 'https://github.com/deepikab97/Python-Django-app.git'                }
+        //         script { git branch: 'master',   url: 'https://github.com/deepikab97/Python-Django-app.git'                }
 
-            }
-        }
+        //     }
+        // }
         
 
 
