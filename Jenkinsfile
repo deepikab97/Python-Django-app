@@ -1,7 +1,6 @@
 pipeline {
     agent {
         label 'Agent_linux_akshay'
-        sh 'git --version'
     }
     environment {
     // Define environment variables, e.g., for database connection
@@ -10,7 +9,7 @@ pipeline {
       DB_USER = 'postgres'
       DB_PASS = 'postgres'
      // scannerHome = tool 'sonarscanner'
-        
+        sh 'git --version'
    }
 
     stages {
