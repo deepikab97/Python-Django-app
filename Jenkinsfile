@@ -17,8 +17,8 @@ pipeline {
         stage('Checkout'){
             steps{
                 
-                
-                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/deepikab97/Python-Django-app.git']])
+                script { git branch: 'master',   url: 'https://github.com/deepikab97/Python-Django-app.git'                }
+
             }
         }
         
