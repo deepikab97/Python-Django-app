@@ -9,7 +9,7 @@ pipeline {
       DB_USER = 'postgres'
       DB_PASS = 'postgres'
      // scannerHome = tool 'sonarscanner'
-        sh 'git --version'
+        
    }
 
     stages {
