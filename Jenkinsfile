@@ -1,6 +1,7 @@
 pipeline {
     agent {
         label 'Agent_linux_akshay'
+        sh 'git --version'
     }
     environment {
     // Define environment variables, e.g., for database connection
@@ -16,7 +17,7 @@ pipeline {
 
         stage('Checkout'){
             steps{
-                sh 'git --version'
+                
                 
                 checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/deepikab97/Python-Django-app.git']])
             }
