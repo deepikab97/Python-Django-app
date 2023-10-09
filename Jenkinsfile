@@ -56,7 +56,7 @@ pipeline {
             echo "Current working directory is: ${currentDirectory}"
             }
          // Generate code coverage.  
-          sh 'python3 -m venv venv'
+          sh 'python -m venv venv'
           sh '. venv/bin/activate' 
           sh 'python --version'  
           sh 'pip3 install -r requirements.txt' 
