@@ -65,7 +65,7 @@ pipeline {
               python3 manage.py migrate 
               pip3 install coverage
               coverage run manage.py test       // Run tests with coverage 
-              coverage xml -i -o ${currentDirectory}/coverage.xml  ''' // Generate the coverage report  
+              coverage xml -o coverage.xml  ''' // Generate the coverage report  
 
         }
       }
