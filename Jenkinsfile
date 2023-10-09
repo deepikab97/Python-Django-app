@@ -22,17 +22,18 @@ pipeline {
         //     }
         // }
         
-
-
-        
-
+    
         
       stage('Install Dependencies') {
         steps {
           // Use a virtual environment to isolate Python dependencies
-          sh 'python3 -m venv venv'
-          sh '. venv/bin/activate'
-          sh 'pip3 install -r requirements.txt'
+          sh """python3 -m venv venv
+            . venv/bin/activate
+            echo $VIRTUAL_ENV
+            pip3 install -r requirements.txt
+            """
+          
+          
       }
     }
       stage('Database Setup') {
