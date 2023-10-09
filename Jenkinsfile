@@ -57,19 +57,15 @@ pipeline {
             echo "Current working directory is: ${currentDirectory}"
             }
          // Generate code coverage.  
-          sh 'python3 -m venv virtualenv'
-          sh '. virtualenv/bin/activate' 
-          sh 'python --version'  
-          sh 'pip3 install -r requirements.txt' 
-          //sh 'pip3 install django'  
-          sh 'python3 manage.py makemigrations'
-          sh 'python3 manage.py migrate'  
-         // sh 'python3 manage.py runserver'
-           
-         
-          sh 'pip3 install coverage'
-          sh 'coverage run manage.py test'       // Run tests with coverage 
-          sh 'coverage xml -i -o ${currentDirectory}/coverage.xml'   // Generate the coverage report  
+          sh '''python3 -m venv venv
+              . venv/bin/activate
+              python --version 
+              pip3 install -r requirements.txt 
+              python3 manage.py makemigrations
+              python3 manage.py migrate 
+              pip3 install coverage
+              coverage run manage.py test       // Run tests with coverage 
+              coverage xml -i -o ${currentDirectory}/coverage.xml  ''' // Generate the coverage report  
 
         }
       }
