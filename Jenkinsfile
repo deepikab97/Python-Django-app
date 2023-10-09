@@ -64,6 +64,7 @@ pipeline {
               python3 manage.py makemigrations
               python3 manage.py migrate 
               pip3 install coverage
+              python3 manage.py test
               coverage run manage.py test       // Run tests with coverage 
               coverage xml -o coverage.xml  ''' // Generate the coverage report  
 
