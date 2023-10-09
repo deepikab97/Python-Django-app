@@ -62,10 +62,10 @@ pipeline {
               python --version 
               pip3 install -r requirements.txt 
               python3 manage.py makemigrations
-              python3 manage.py migrate 
-              pip3 install coverage
+              python3 manage.py migrate
               python3 manage.py test
-              coverage run manage.py test       // Run tests with coverage 
+              pip3 install coverage
+              coverage run manage.py test       
               coverage xml -o coverage.xml  ''' // Generate the coverage report  
 
         }
