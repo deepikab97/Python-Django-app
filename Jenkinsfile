@@ -102,6 +102,16 @@ pipeline {
           slackSend(channel: slackResponse, message: "Docker containers are running successfully : ${env.JOB_NAME} ${env.BUILD_NUMBER}")  
              }
          }
+
+        stage ('Trivy scan') {
+		    steps{
+                sh 'curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl > html.tpl'
+                sh  'trivy image --format template --template "@./html.tpl" -o report.html 172.27.59.80:8082/alm-jenkins-python-cicd-pipeline-deepika/python-djangoapp:${BUILD_NUMBER}'
+
+            }
+            
+
+    	}
             
       
       
