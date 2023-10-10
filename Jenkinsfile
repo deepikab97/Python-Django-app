@@ -9,7 +9,7 @@ pipeline {
       DB_USER = 'postgres'
       DB_PASS = 'postgres'
      // scannerHome = tool 'sonarscanner'
-        
+      def slackResponse = slackSend(channel: "jenkins", message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}")  
    }
 
     stages {
@@ -88,7 +88,8 @@ pipeline {
         steps {
          // Build the application with docker .  
           sh 'docker rm -f db djangoapp'
-          sh 'docker-compose up -d'  
+          sh 'docker-compose up -d' 
+          slackSend(channel: slackResponse.threadId, message: "Docker containers are running successfully : ${env.JOB_NAME} ${env.BUILD_NUMBER}")  
              }
          }
 
