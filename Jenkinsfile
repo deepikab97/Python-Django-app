@@ -84,15 +84,25 @@ pipeline {
                 }
            }   
 
-        stage('Build package') {
-        steps {
+        
+
+        stage('Artifact push to Jfrog'){
+            steps{
+                sh 'docker image build -t 172.27.59.80:8082/alm-jenkins-python-cicd-pipeline-deepika/python-djangoapp:${env.BUILD_NUMBER} .'
+                sh  'docker login -u $JFROG_USER -p $JFROG_PASSWORD http://172.27.59.80:8082/'
+                sh  'docker push  172.27.59.80:8082/alm-jenkins-python-cicd-pipeline-deepika/python-djangoapp:${env.BUILD_NUMBER}'  
+            }
+        }
+
+        stage('Deploy application') {
+          steps {
          // Build the application with docker .  
           sh 'docker rm -f db djangoapp'
-          sh 'docker-compose up -d' 
+          sh 'docker-compose up -d'  
           slackSend(channel: slackResponse, message: "Docker containers are running successfully : ${env.JOB_NAME} ${env.BUILD_NUMBER}")  
              }
          }
-
+            
       
       
     }
