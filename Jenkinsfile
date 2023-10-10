@@ -22,8 +22,6 @@ pipeline {
         //     }
         // }
         
-    
-        
       stage('Install Dependencies') {
         steps {
           // Use a virtual environment to isolate Python dependencies
@@ -85,6 +83,14 @@ pipeline {
                       }
                 }
            }   
+
+        stage('Build package') {
+        steps {
+         // Build the application with docker .  
+          sh 'docker rm -f db djangoapp'
+          sh 'docker-compose up -d'  
+             }
+         }
 
       
       
