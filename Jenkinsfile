@@ -88,9 +88,9 @@ pipeline {
 
         stage('Artifact push to Jfrog'){
             steps{
-                sh 'docker image build -t 172.27.59.80:8082/alm-jenkins-python-cicd-pipeline-deepika/python-djangoapp:${env.BUILD_NUMBER} .'
+                sh 'docker image build -t 172.27.59.80:8082/alm-jenkins-python-cicd-pipeline-deepika/python-djangoapp:${BUILD_NUMBER} .'
                 sh  'docker login -u $JFROG_USER -p $JFROG_PASSWORD http://172.27.59.80:8082/'
-                sh  'docker push  172.27.59.80:8082/alm-jenkins-python-cicd-pipeline-deepika/python-djangoapp:${env.BUILD_NUMBER}'  
+                sh  'docker push  172.27.59.80:8082/alm-jenkins-python-cicd-pipeline-deepika/python-djangoapp:${BUILD_NUMBER}'  
             }
         }
 
