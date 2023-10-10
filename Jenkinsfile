@@ -108,12 +108,14 @@ pipeline {
                 sh 'curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl > html.tpl'
                 sh  'trivy image --format template --template "@./html.tpl" -o report.html 172.27.59.80:8082/alm-jenkins-python-cicd-pipeline-deepika/python-djangoapp:${BUILD_NUMBER}'
 
-            }
+            } 
+   	}
             
-
-    	}
-            
-      
+      	stage('Reports'){
+	   steps{
+		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '.', reportFiles: 'report.html', reportName: 'Trivy Scan', reportTitles: '', useWrapperFileDirectly: true])   
+	   }
+	   }
       
     }
 
