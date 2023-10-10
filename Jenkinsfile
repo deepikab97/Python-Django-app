@@ -74,7 +74,7 @@ pipeline {
      stage('Sonarqube Analysis') {
          // def scannerHome = tool name: 'sonarscanner';
          steps {
-             withSonarQubeEnv(installationName:'Sonarqube',credentialsId:'Soanrqube cred for Deepika') {
+             withSonarQubeEnv(installationName:'Sonarqube',credentialsId:'Soanrqube Cred for Deepika') {
             // some block 
                  echo 'Inside Soanrqube'
                 sh '/home/akshay/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner'
