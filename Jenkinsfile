@@ -13,43 +13,37 @@ pipeline {
    }
 
     stages {
-
-        // stage('Checkout'){
-        //     steps{
-                
-        //         script { git branch: 'master',   url: 'https://github.com/deepikab97/Python-Django-app.git'                }
-
-        //     }
-        // }
+         stage('Checkout'){
+             steps{
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/deepikab97/Python-Django-app.git']])
+             }
+         }
         
-      stage('Install Dependencies') {
-        steps {
-          // Use a virtual environment to isolate Python dependencies
-          sh '''python3 -m venv venv
-            . venv/bin/activate
-            python --version
-            pip3 install -r requirements.txt
-            '''
-          
-          
-      }
-    }
-      stage('Database Setup') {
-        steps {
-          // Initialize the PostgreSQL database (create schema, run migrations, etc.)
-          sh 'python3 manage.py makemigrations'
-          sh 'python3 manage.py migrate'
+      	stage('Install Dependencies') {
+        	steps {
+        	  // Use a virtual environment to isolate Python dependencies
+        	  sh '''python3 -m venv venv
+          	  . venv/bin/activate
+        	    python --version
+          	  pip3 install -r requirements.txt
+          	  '''  
+    		  }
+  	  }
+     	 stage('Database Setup') {
+     	   steps {
+         	 // Initialize the PostgreSQL database (create schema, run migrations, etc.)
+       		   sh 'python3 manage.py makemigrations'
+          	  sh 'python3 manage.py migrate'
+       		 }
+     	 }
+       stage('Unit Testing') {
+         steps {
+            // Run your Python tests.  
+            sh 'python3 manage.py test'
+            }
         }
-      }
-      stage('Unit Testing') {
-        steps {
-         // Run your Python tests.  
-          sh 'python3 manage.py test'
-        }
-      }
-
-     stage('Code Coverage') {
-        steps {
+      stage('Code Coverage') {
+         steps {
             script {
             def currentDirectory = pwd()
             echo "Current working directory is: ${currentDirectory}"
