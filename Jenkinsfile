@@ -21,7 +21,7 @@ pipeline {
              }
 		 
          }
-        
+     slackSend(channel: slackResponse.channelId, message: "Sonar Analysis done : ${env.JOB_NAME} ${env.BUILD_NUMBER}", timestamp: slackResponse.ts)    
       	stage('Install Dependencies') {
         	steps {
         	  // Use a virtual environment to isolate Python dependencies
@@ -74,7 +74,7 @@ pipeline {
                  echo 'Inside Soanrqube'
                 sh '/home/akshay/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner'
             }
-	  slackSend(channel: slackResponse.channelId, message: "Sonar Analysis done : ${env.JOB_NAME} ${env.BUILD_NUMBER}", timestamp: slackResponse.ts)
+	 
              timeout(time: 10, unit: 'MINUTES') {
                  waitForQualityGate abortPipeline: true
                  echo 'inside sonar environment'
