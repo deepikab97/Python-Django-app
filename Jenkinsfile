@@ -17,8 +17,9 @@ pipeline {
          stage('Checkout'){
              steps{
                 checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/deepikab97/Python-Django-app.git']])
+		slackSend(channel: slackResponse.threadId, message: "Sonar Analysis done : ${env.JOB_NAME} ${env.BUILD_NUMBER}")     
              }
-		 slackSend(channel: slackResponse.threadId, message: "Sonar Analysis done : ${env.JOB_NAME} ${env.BUILD_NUMBER}")
+		 
          }
         
       	stage('Install Dependencies') {
