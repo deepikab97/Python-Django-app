@@ -17,7 +17,7 @@ pipeline {
          stage('Checkout'){
              steps{
                 checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/deepikab97/Python-Django-app.git']])
-		slackSend(channel: slackResponse.threadId, message: "Sonar Analysis done : ${env.JOB_NAME} ${env.BUILD_NUMBER}")     
+		     
              }
 		 
          }
@@ -74,7 +74,7 @@ pipeline {
                  echo 'Inside Soanrqube'
                 sh '/home/akshay/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner'
             }
-	  
+	  slackSend(channel: slackResponse.channelId, message: "Sonar Analysis done : ${env.JOB_NAME} ${env.BUILD_NUMBER}", timestamp: slackResponse.ts)
              timeout(time: 10, unit: 'MINUTES') {
                  waitForQualityGate abortPipeline: true
                  echo 'inside sonar environment'
