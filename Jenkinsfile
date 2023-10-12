@@ -94,7 +94,7 @@ pipeline {
          // Build the application with docker .  
           sh 'docker rm -f db djangoapp'
           sh 'docker-compose up -d'  
-          slackSend(channel: slackResponse, message: "Docker containers are running successfully : ${env.JOB_NAME} ${env.BUILD_NUMBER}")  
+          slackSend(channel:"jenkins" , message: "Docker containers are running successfully : ${env.JOB_NAME} ${env.BUILD_NUMBER}")  
              }
          }
 
