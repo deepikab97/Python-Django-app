@@ -74,7 +74,7 @@ pipeline {
                  echo 'Inside Soanrqube'
                 sh '/home/akshay/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner'
             }
-	   slackSend(channel:"jenkins" , message: "Sonar Analysis done : ${env.JOB_NAME} ${env.BUILD_NUMBER}") 
+	    slackSend(channel:"jenkins" , message: "Docker containers are running successfully : ${env.JOB_NAME} ${env.BUILD_NUMBER}")
              timeout(time: 10, unit: 'MINUTES') {
                  waitForQualityGate abortPipeline: true
                  echo 'inside sonar environment'
@@ -112,7 +112,7 @@ pipeline {
       	stage('Reports'){
 	   steps{
 		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '.', reportFiles: 'report.html', reportName: 'Trivy Scan', reportTitles: '', useWrapperFileDirectly: true])  
-		 slackSend(channel:"jenkins" , message: "Build SUCCESS: ${env.JOB_NAME} ${env.BUILD_NUMBER}")   
+		slackSend(channel:"jenkins" , message: "Docker containers are running successfully : ${env.JOB_NAME} ${env.BUILD_NUMBER}") 
 	   }
 	   }
       
