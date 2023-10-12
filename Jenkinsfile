@@ -72,8 +72,8 @@ pipeline {
                 sh '/home/akshay/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner'
             }
              timeout(time: 10, unit: 'MINUTES') {
-                	def qg = waitForQualityGate()
-           		 if (qg.status != 'OK') {
+                def qg = waitForQualityGate()
+           	    if (qg.status != 'OK') {
              		error "Pipeline aborted due to Quality gate Failure: ${qg.status}"
 			 }
                       }
