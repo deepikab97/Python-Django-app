@@ -10,6 +10,7 @@ pipeline {
       DB_PASS = 'postgres'
      // scannerHome = tool 'sonarscanner'
       def slackResponse = slackSend(channel: "jenkins", message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}")  
+     slackSend(channel: slackResponse.threadId, message: "Sonar Analysis done : ${env.JOB_NAME} ${env.BUILD_NUMBER}")    
    }
 
     stages {
@@ -71,7 +72,7 @@ pipeline {
                  echo 'Inside Soanrqube'
                 sh '/home/akshay/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner'
             }
-	 // slackSend(channel: slackResponse.threadId, message: "Sonar Analysis done : ${env.JOB_NAME} ${env.BUILD_NUMBER}")
+	  
              timeout(time: 10, unit: 'MINUTES') {
                  waitForQualityGate abortPipeline: true
                  echo 'inside sonar environment'
