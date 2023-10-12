@@ -71,6 +71,7 @@ pipeline {
                  echo 'Inside Soanrqube'
                 sh '/home/akshay/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner'
             }
+	  slackSend(channel: slackResponse.threadId, message: "Sonar Analysis done : ${env.JOB_NAME} ${env.BUILD_NUMBER}")
              timeout(time: 10, unit: 'MINUTES') {
                 def qg = waitForQualityGate()
            	    if (qg.status != 'OK') {
