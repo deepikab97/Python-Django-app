@@ -73,10 +73,8 @@ pipeline {
             }
 	  slackSend(channel: slackResponse.threadId, message: "Sonar Analysis done : ${env.JOB_NAME} ${env.BUILD_NUMBER}")
              timeout(time: 10, unit: 'MINUTES') {
-                def qg = waitForQualityGate()
-           	    if (qg.status != 'OK') {
-             		error "Pipeline aborted due to Quality gate Failure: ${qg.status}"
-			 }
+                 waitForQualityGate abortPipeline: true
+                 echo 'inside sonar environment'
                       }
                 }
            }   
