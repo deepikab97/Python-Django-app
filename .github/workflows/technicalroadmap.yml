@@ -1,0 +1,9 @@
+name: python-django-project/technicalroadmap
+on:
+#   # The shortest interval you can run scheduled workflows is once every 5 minutes.
+#   period: '180'
+jobs:
+  Default-Stage-Default-Job:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4.1.0
